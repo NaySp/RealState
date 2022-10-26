@@ -26,9 +26,8 @@ public class RealState{
     }
 
     public String addBuilding(String idBuilding, int numApartments, String address){
-        String msj = "Algo salió mal, no pudo ser agregado.";
 
-        Building newBuilding = new Building(idBuilding, numApartments, address);
+        String msj = "Algo salió mal, no pudo ser agregado.";
         boolean isEmpty = false;
 
         if(numApartments == -1){
@@ -36,7 +35,7 @@ public class RealState{
         }else{
             for(int i = 0; i < SIZE_BUILDING && !isEmpty; i++){
                 if(buildings[i] == null){
-                    buildings[i] = newBuilding;
+                    new Building(idBuilding, numApartments, address);
                     msj = "Nuevo edificio agregado. ";
                 }
             }
@@ -58,23 +57,35 @@ public class RealState{
         return pos;
     }   
 
-    public String registerAptToBuilding(String idBuild, int numApt, int numRooms, int numBath, boolean hasBalcony, double monthRent){
+    public String registerAptToBuilding(String idBuild, int numApt, int numRooms, int numBath, String balcony, double monthRent){
+        
         
         String msj = "";
-        Apartment newApartment = new Apartment(numApt, numRooms, numBath, hasBalcony, monthRent);
         int posBuilding = searchBuilding(idBuild);
+        boolean createApt = false;
+        
 
-        if(numApt == -1 | numRooms == -1 | numBath ==-1 | monthRent == -1){
+        if(numApt == -1 | numRooms == -1 | numBath ==-1){
             msj = "Digita números donde se requieren, no escribas letras.";
+        }else if( monthRent == -1){
+            msj = "Digita un precio válido. Usa puntos y/o comas.";
         }else if(posBuilding != -1){
-            msj = buildings[posBuilding].addApt(newApartment);
+            msj = "El edificio al que deseas añadir apartamentos no existe.";           
+        }else if( !balcony.equalsIgnoreCase("si") || !balcony.equalsIgnoreCase("no")){
+            msj = "Escribe si o no.";            
+        }
+        else{
+            for(int i = 0; i < SIZE_APARTMENT && !createApt; i++){
+                if(buildings[posBuilding].apartments[i] == null){
+                    buildings[posBuilding].apartments[i] = new Apartment(numApt, numRooms, numBath, balcony, monthRent);
+                }
+            }
+
+
         }
         return msj;
 
     }
-
-
     
-
 
 }

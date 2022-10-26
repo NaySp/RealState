@@ -9,14 +9,26 @@ public class Apartment{
     protected double monthRent;
 
 
-    public Apartment(int numApt, int numRooms, int numBath, boolean hasBalcony, double monthRent){
+    public Apartment(int numApt, int numRooms, int numBath, String hasBalcony, double monthRent){
         this.numApt = numApt;
         this.numRooms = numRooms;
         this.numBath = numBath;
-        this.hasBalcony = hasBalcony;
+
+        if(hasBalcony.equalsIgnoreCase("si")){
+            this.hasBalcony = true;
+        }else if(hasBalcony.equalsIgnoreCase("no")){
+            this.hasBalcony = false;
+
+        }
+        this.monthRent = monthRent;
+
+
 
         this.monthRent = monthRent;
+
+
     }
+
 
     
 

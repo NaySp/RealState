@@ -99,16 +99,16 @@ public class Main{
         int numApt;
         int numRooms;
         int numBath;
-
         int numApartments;
-
-        boolean hasBalcony;
 
         double monthRent;
 
+
         String msj;
         String idBuilding;
+        String hasBalcony;
         String address;
+
 
 		switch(option){
             case 1: 
@@ -135,7 +135,7 @@ public class Main{
                 System.out.println("Digita el número de baños: ");
                 numBath = validateInt();
                 System.out.println("Escribe si tiene balcón o no.");
-                hasBalcony = reader.hasNextBoolean();
+                hasBalcony = reader.next();
                 System.out.println("Ingresa el valor mensual del arrendamiento: ");
                 monthRent = validateDouble();
                 msj = realState.registerAptToBuilding(idBuilding, numApt, numRooms, numBath, hasBalcony, monthRent);
