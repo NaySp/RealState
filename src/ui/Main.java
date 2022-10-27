@@ -1,12 +1,7 @@
 package ui;
-
-import model.User;
-import model.Tenant;
-import model.Owner;
-import model.TypePhone;
-import model.RealState;
-
+import model.*;
 import java.util.Scanner;
+
 
 public class Main{
 
@@ -14,7 +9,7 @@ public class Main{
     private RealState realState;
 
     public Main(){
-        this.reader = new Scanner(System.in);
+        reader = new Scanner(System.in);
         realState = new RealState();
     }
     
@@ -30,13 +25,12 @@ public class Main{
         Main main = new Main();
 		
         int option = 0;
-                do{
-                    option = main.getOptionShowMenu();
-                    main.executeOption(option);
 
-                }while(option !=0);
+        do{
+            option = main.getOptionShowMenu();
+            main.executeOption(option);
 
-                main.getReader().close();
+        }while(option !=0);
 
     }
 
@@ -65,7 +59,7 @@ public class Main{
 	}
 
     public int validateInt(){
-		int option = 0;
+		int option = -1;
 		
 		if(reader.hasNextInt()){
 			option = reader.nextInt();
@@ -134,10 +128,24 @@ public class Main{
                 numRooms = validateInt();
                 System.out.println("Digita el número de baños: ");
                 numBath = validateInt();
+
                 System.out.println("Escribe si tiene balcón o no.");
                 hasBalcony = reader.next();
+                boolean balcony = true;
+                while (!hasBalcony.equalsIgnoreCase("si") && !hasBalcony.equalsIgnoreCase("no")){
+                    if(hasBalcony.equalsIgnoreCase("si")){
+                        balcony = true;
+                    }else if(hasBalcony.equalsIgnoreCase("no")){
+                        balcony = false;
+                    }
+                    else{
+                        System.out.println("Opción no valida, intenta otra vez. ");
+                        hasBalcony = reader.next();
+                    }
+                }
                 System.out.println("Ingresa el valor mensual del arrendamiento: ");
                 monthRent = validateDouble();
+
                 msj = realState.registerAptToBuilding(idBuilding, numApt, numRooms, numBath, hasBalcony, monthRent);
                 System.out.println(msj);
 

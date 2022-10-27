@@ -16,12 +16,14 @@ public class Building{
         this.idBuilding = idBuilding;
         this.numApartments = numApartments;
         this.address = address;
+        apartments = new Apartment[numApartments];
         
     }
 
     public String getidBuilding(){
-        return idBuilding;
+        return this.idBuilding;
     }
+
 
     public String addApt(Apartment apartment){
         String msj = "No se pudo agragar el apartamento. ";
@@ -29,10 +31,18 @@ public class Building{
         for(int i = 0; i < SIZE_APARTMENT && !isEmpty; i++){
             if(apartments[i] == null){
                 apartments[i] = apartment;
-                msj = "Apartamento agregado d: ";
+                isEmpty =true;
+                msj = "Nuevo apartamento agregado.";
             }
         }
         return msj;
     }
+
+    public Apartment[] getApartments(){
+        return apartments;
+    }
+
+   
+
 
 }

@@ -7,6 +7,7 @@ public class Apartment{
     protected int numBath;
     protected boolean hasBalcony;
     protected double monthRent;
+    private Building building;
 
 
     public Apartment(int numApt, int numRooms, int numBath, String hasBalcony, double monthRent){
@@ -21,13 +22,14 @@ public class Apartment{
 
         }
         this.monthRent = monthRent;
-
-
-
         this.monthRent = monthRent;
-
-
     }
+
+    public Building getBuilding(){
+        return building;
+    }
+
+    
 
 
     
