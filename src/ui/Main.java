@@ -97,11 +97,30 @@ public class Main{
 
         double monthRent;
 
+        String nameOwner;
+        String ccTypeOwner;
+        String ccOwner;
+        String numberIdOwner;
+        int typePhoneOwner; 
+        String nameAccountOwner;
+        String nameBankOwner;
+
+
 
         String msj;
         String idBuilding;
-        String hasBalcony;
+        int hasBalcony;
         String address;
+
+        String buildingToTenant;
+        int apartmentToRent;
+        String ccTypeTenant;
+        String ccTenant;
+        String nameTenant;
+        String numberOfContact;
+        int numberContactType;
+
+        String nameToAvailable;
 
 
 		switch(option){
@@ -129,38 +148,109 @@ public class Main{
                 System.out.println("Digita el número de baños: ");
                 numBath = validateInt();
 
-                System.out.println("Escribe si tiene balcón o no.");
-                hasBalcony = reader.next();
-                boolean balcony = true;
-                while (!hasBalcony.equalsIgnoreCase("si") && !hasBalcony.equalsIgnoreCase("no")){
-                    if(hasBalcony.equalsIgnoreCase("si")){
-                        balcony = true;
-                    }else if(hasBalcony.equalsIgnoreCase("no")){
-                        balcony = false;
-                    }
-                    else{
-                        System.out.println("Opción no valida, intenta otra vez. ");
-                        hasBalcony = reader.next();
-                    }
-                }
+                System.out.println("Escribe si tiene balcón: \n" +
+                "1. SI. \n" +
+                "2. NO.");
+                hasBalcony = validateInt();
+                
                 System.out.println("Ingresa el valor mensual del arrendamiento: ");
                 monthRent = validateDouble();
 
-                msj = realState.registerAptToBuilding(idBuilding, numApt, numRooms, numBath, hasBalcony, monthRent);
+                
+                System.out.println("Escriba el nombre del dueño:");
+                nameOwner = reader.next();
+                System.out.println("Escriba el tipo de documento del dueño:");
+                ccTypeOwner = reader.next();
+                System.out.println("Escriba el documento:");
+                ccOwner = reader.next();
+                System.out.println("Digite el numero de contacto del dueño:");
+                numberIdOwner = reader.next();
+                System.out.println("Digite el tipo de telefono: \n" +
+                "1. HOME. \n" +
+                "2. OFFICE. \n" +
+                "3. MOVIL. \n" +
+                "4. FAMILY. \n" +
+                "5. OTHER.");
+                typePhoneOwner = validateInt();
+                System.out.println("Digite el numero de la cuenta bancaria del dueño:");
+                nameAccountOwner = reader.next();
+                System.out.println("Ecriba el nombre del banco:");
+                nameBankOwner = reader.next();
+
+
+                msj = realState.registerAptToBuilding(idBuilding, numApt, numRooms, numBath, hasBalcony, monthRent, nameOwner, ccTypeOwner, ccOwner, numberIdOwner, typePhoneOwner, nameAccountOwner, nameBankOwner);
                 System.out.println(msj);
 
                 break;
 
             case 3: 
+                System.out.println("Escriba el nombre del dueño:");
+                nameOwner = reader.next();
+                System.out.println("Escriba el tipo de documento del dueño:");
+                ccTypeOwner = reader.next();
+                System.out.println("Escriba el documento:");
+                ccOwner = reader.next();
+                System.out.println("Digite el numero de contacto del dueño:");
+                numberIdOwner = reader.next();
+                System.out.println("Digite el tipo de telefono: \n" +
+                "1. HOME. \n" +
+                "2. OFFICE. \n" +
+                "3. MOVIL. \n" +
+                "4. FAMILY. \n" +
+                "5. OTHER.");
+                typePhoneOwner = validateInt();
+                System.out.println("Digite el numero de la cuenta bancaria del dueño:");
+                nameAccountOwner = reader.next();
+                System.out.println("Ecriba el nombre del banco:");
+                nameBankOwner = reader.next();
+
+
+                msj = realState.registerOwner(nameOwner, ccTypeOwner, ccOwner, numberIdOwner, typePhoneOwner, nameAccountOwner, nameBankOwner);
+                System.out.println(msj);
                 break;
             
             case 4: 
+                System.out.println("Escriba el edificio en el que desea alquilar: ");
+                buildingToTenant = reader.next();
+                System.out.println("Escriba el numero del apartamento:");
+                apartmentToRent = validateInt();
+                System.out.println("Escriba el tipo de documento del arrendatario:");
+                ccTypeTenant = reader.next();
+                System.out.println("Digite el numero de documento:");
+                ccTenant = reader.next();
+                System.out.println("Escriba el nombre del arrendatario:");
+                nameTenant = reader.next();
+                System.out.println("Digite el numero de contacto del arrendatario:");
+                numberOfContact= reader.next();
+                System.out.println("Digite el tipo de telefono: \n" +
+                "1. HOME. \n" +
+                "2. OFFICE. \n" +
+                "3. MOVIL. \n" +
+                "4. FAMILY. \n" +
+                "5. OTHER.");
+                numberContactType = validateInt();
+
+
+                msj = realState.registerTenant(buildingToTenant, apartmentToRent, ccTypeTenant, ccTenant, nameTenant, numberOfContact, numberContactType);
+                System.out.println(msj);
                 break;
             
             case 5: 
+                System.out.println("Escriba el nombre del edificio a consultar:");
+                nameToAvailable = reader.next();
+
+                msj = realState.consultAvailableAptos(nameToAvailable);
+                System.out.println(msj);
+
                 break;
             
             case 6: 
+            
+            System.out.println("Escriba el nombre del edificio a consultar:");
+            nameToAvailable = reader.next();
+
+            msj = realState.consultAmountAptos(nameToAvailable);
+            System.out.println(msj);
                 break;
 
             case 7: 

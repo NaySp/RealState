@@ -7,31 +7,38 @@ public class Apartment{
     protected int numBath;
     protected boolean hasBalcony;
     protected double monthRent;
-    private Building building;
+    protected boolean isRented;
 
 
-    public Apartment(int numApt, int numRooms, int numBath, String hasBalcony, double monthRent){
+    public Apartment(int numApt, int numRooms, int numBath, int hasBalcony, double monthRent){
         this.numApt = numApt;
         this.numRooms = numRooms;
         this.numBath = numBath;
+        this.isRented = false;
 
-        if(hasBalcony.equalsIgnoreCase("si")){
+        if(hasBalcony == 1){
             this.hasBalcony = true;
-        }else if(hasBalcony.equalsIgnoreCase("no")){
+        }else if(hasBalcony == 2){
             this.hasBalcony = false;
 
         }
         this.monthRent = monthRent;
-        this.monthRent = monthRent;
     }
 
-    public Building getBuilding(){
-        return building;
+    public int getnumApto(){
+        return this.numApt;
     }
 
+    public void setIsRented(){
+        this.isRented = !isRented;
+    }
     
+    public boolean getIsRented(){
+        return this.isRented;
+    }
 
-
-    
+    public double getMontRent(){
+        return this.monthRent;
+    }
 
 }

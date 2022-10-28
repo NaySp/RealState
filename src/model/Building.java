@@ -24,6 +24,10 @@ public class Building{
         return this.idBuilding;
     }
 
+    public int getNumApartments(){
+        return this.numApartments;
+    }
+
 
     public String addApt(Apartment apartment){
         String msj = "No se pudo agragar el apartamento. ";

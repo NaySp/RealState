@@ -2,16 +2,20 @@ package model;
 
 public abstract class User{
 
-        
+    private final int SIZE_APARTMENT = 25;
     private String name;
+    private String ccType;
     private String cc;
     private String number;
     private TypePhone typePhone;
+    protected Apartment[] apartments;
 
-    public User(String name, String cc, String number, int typePhone){
+    public User(String name, String ccType, String cc, String number, int typePhone){
         this.name = name;
         this.cc = cc;
+        this.ccType = ccType;
         this.number = number;
+        this.apartments = new Apartment[SIZE_APARTMENT];
 
         switch(typePhone){
             case 1:
